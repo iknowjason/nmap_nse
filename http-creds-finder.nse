@@ -14,7 +14,7 @@ This script will spider a website and look for any sensitive API Keys or secrets
 
 ---
 -- @usage
--- nmap --script=http-creds-finder <target>
+-- nmap --script=http-creds-finder <TARGET> -p443
 --
 -- @output
 -- PORT    STATE SERVICE REASON
@@ -25,7 +25,7 @@ This script will spider a website and look for any sensitive API Keys or secrets
 ---|     State: VULNERABLE
 ---|       String Found: MYSQL_DEVELOPMENT_DATABASE_NAME: rtcdev
 ---|     Extra information:
----|       URI: https://https://demo.rtcfingroup.com:443/env.txt
+---|       URI: https://demo.rtcfingroup.com:443/env.txt
 ---|
 ---|   Sensitive Data: SALESFORCE_CLIENT_SECRET
 ---|     State: VULNERABLE
