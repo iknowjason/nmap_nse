@@ -31,7 +31,7 @@ This script will spider a website and look for any sensitive API Keys or secrets
 ---|     State: VULNERABLE
 ---|       String Found: SALESFORCE_CLIENT_SECRET: WkpFFDDjTxZ3CagXEihmpe
 ---|     Extra information:
----|       URI: https://https://demo.rtcfingroup.com:443/env.txt
+---|       URI: https://demo.rtcfingroup.com:443/env.txt
 ---|
 --
 -- @args http-creds-finder.maxdepth the maximum amount of directories beneath
