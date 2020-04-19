@@ -1,6 +1,9 @@
 -- The Head Section --
-description = [[Sample script to detect 
+description = [[Sample script to detect
 the presence of a Ruby on Rails rack-mini-profiler gem that is used to provide performance metrics for Rails applications.  This simple detection script finds the eenvironment variables page and looks for exposed API keys and other sensitive data such as credentials]]
+The 'rack-mini-profiler' is an performance tool used by Ruby on Rails developers.  For more information:
+[1] https://github.com/MiniProfiler/rack-mini-profiler
+[2] https://www.speedshop.co/2015/08/05/rack-mini-profiler-the-secret-weapon.html
 
 ---
 -- @usage
@@ -8,20 +11,20 @@ the presence of a Ruby on Rails rack-mini-profiler gem that is used to provide p
 -- @output
 -- PORT    STATE SERVICE
 -- 443/tcp open  https
--- | http-ruby-environment: 
+-- | http-ruby-environment:
 -- |   VULNERABLE:
 -- |   Detected Rack-mini-profiler Environment Variables
 -- |     State: LIKELY VULNERABLE
 -- |       Manually investigate for issues
 -- |     Extra information:
 -- |       URI: https://preprod.rtcfingroup.com/?pp=env
--- |   
+-- |
 -- |   Sensitive Data: S3_ACCESS_KEY_ID
 -- |     State: VULNERABLE
 -- |       String Found: S3_ACCESS_KEY_ID: kDgvmKEFKZsT9CAgJdKy
 -- |     Extra information:
 -- |       URI: https://preprod.rtcfingroup.com/?pp=env
--- |_ 
+-- |_
 
 
 author = "Jason Ostrom"
@@ -47,7 +50,7 @@ action = function(host, port)
     local function check_sensitive(response_body, key, value, rhost, ruri)
 
 	---print("Checking: "..key)
-        local retval = ""	
+        local retval = ""
 	retval = string.match(response_body, value)
 	if retval == nil then
 	     --- do nothing
@@ -59,8 +62,8 @@ action = function(host, port)
 	    local tmp_vuln_table = {
 	        title = "Sensitive Data: "..key,
 	        state = vulns.STATE.VULN, --default
-	        description = "String Found: "..retval, 
-	        extra_info = "URI: https://" .. rhost .. ruri 
+	        description = "String Found: "..retval,
+	        extra_info = "URI: https://" .. rhost .. ruri
 	    }
 
             ---Need to add this information to vulnerability table
@@ -103,7 +106,7 @@ action = function(host, port)
     local uri = "/?pp=env"
 
     --- declaring the myhost variable
-    local myhost = "" 
+    local myhost = ""
 
     --- use hostname or IP address
     if host["targetname"] == nil then
@@ -117,10 +120,10 @@ action = function(host, port)
 	    title = "Detected Rack-mini-profiler Environment Variables",
 	    state = vulns.STATE.NOT_VULN, --default
 	    description = "Manually investigate for issues",
-	    extra_info = "URI: https://" .. myhost .. uri 
+	    extra_info = "URI: https://" .. myhost .. uri
     }
 
-    --- get the body response 
+    --- get the body response
     local response = http.get(host, port, uri)
 
     --- if this is True, then the URL exists of https://<HOST>/?pp=env and returns a 200 OK
