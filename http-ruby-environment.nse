@@ -1,11 +1,14 @@
 -- The Head Section --
-description = [[Sample script to detect
+description = [[
+
+Sample script to detect
 the presence of a Ruby on Rails rack-mini-profiler gem that is used to provide performance metrics for Rails applications.
 This simple detection script finds the environment variables page and looks for exposed API keys and other sensitive data such as credentials
 
 The 'rack-mini-profiler' is an performance tool used by Ruby on Rails developers.  For more information:
 [1] https://github.com/MiniProfiler/rack-mini-profiler
 [2] https://www.speedshop.co/2015/08/05/rack-mini-profiler-the-secret-weapon.html
+
 ]]
 
 ---
