@@ -8,7 +8,7 @@ local url = require "url"
 local vulns = require "vulns"
 
 description = [[
-
+This script will spider a website and look for any sensitive API Keys or secrets
 
 ]]
 
@@ -61,7 +61,7 @@ action = function(host, port)
     --- helper function to check if data contains sensitive API keys or any credentials
     local function check_sensitive(response_body, key, value, rhost, ruri)
 
-        local retval = ""	
+        local retval = ""
 	retval = string.match(response_body, value)
 	if retval == nil then
 	     --- do nothing
@@ -74,8 +74,8 @@ action = function(host, port)
 	        title = "Sensitive Data: "..key,
 	        state = vulns.STATE.VULN, --default
 	        description = "String Found: "..retval,
-	        ---extra_info = "URI: https://" .. rhost .. tostring(ruri) 
-	        extra_info = "URI: https://" .. tostring(ruri) 
+	        ---extra_info = "URI: https://" .. rhost .. tostring(ruri)
+	        extra_info = "URI: https://" .. tostring(ruri)
 	    }
 
             ---Need to add this information to vulnerability table
@@ -115,7 +115,7 @@ action = function(host, port)
     sensitive["EBAY_CERT_ID"] = "EBAY_CERT_ID:.-\n"
 
     --- declaring the myhost variable
-    local myhost = "" 
+    local myhost = ""
 
     --- use hostname or IP address
     if host["targetname"] == nil then
