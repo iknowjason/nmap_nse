@@ -3,8 +3,8 @@ description = [[
 
 Sample script to detect the presence of a Ruby on Rails rack-mini-profiler gem that is used to provide performance metrics 
 for Rails applications.  This simple detection script finds the environment variables page and looks for exposed API keys 
-and other sensitive data such as credentials.  It is possible that Rails developers can expose environment variables
-through the gem without fully understanding the implications.  
+and other sensitive data such as credentials at '?pp=env' appended to default host URL.  It is possible that Rails 
+developers can expose environment variables through the gem without fully understanding their implications.  
 
 The 'rack-mini-profiler' is a performance gem utilized by Ruby on Rails developers to better understand performance details
 of Rails applications.  For more information:
